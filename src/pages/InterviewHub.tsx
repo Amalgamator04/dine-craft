@@ -175,15 +175,15 @@ export default function InterviewHub() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="min-h-screen bg-gradient-background">
       {/* Header */}
-      <header className="border-b bg-card/80 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+      <header className="border-b bg-gradient-card backdrop-blur-sm shadow-lg sticky top-0 z-50">
         <div className="container mx-auto px-6 py-6">
           <div className="text-center">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
-              📚 Interview Resource Hub
+            <h1 className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+              🌈 Interview Resource Hub
             </h1>
-            <p className="text-muted-foreground mt-2">Discover and share amazing interview preparation resources</p>
+            <p className="text-muted-foreground mt-3 text-lg">Discover and share amazing interview preparation resources</p>
           </div>
         </div>
       </header>
@@ -195,7 +195,7 @@ export default function InterviewHub() {
             <Button 
               onClick={() => setShowForm(!showForm)}
               size="lg"
-              className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              className="bg-gradient-primary hover:bg-gradient-secondary shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-white border-0"
             >
               <Plus className="w-5 h-5 mr-2" />
               {showForm ? 'Cancel' : 'Add New Resource'}
@@ -204,12 +204,17 @@ export default function InterviewHub() {
 
           {/* Add Resource Form */}
           {showForm && (
-            <Card className="max-w-2xl mx-auto shadow-xl border-0 bg-card/50 backdrop-blur-sm">
+            <Card className="max-w-2xl mx-auto shadow-xl border-0 bg-gradient-card backdrop-blur-sm">
               <CardHeader className="text-center pb-6">
-                <CardTitle className="text-2xl">Add New Interview Resource</CardTitle>
+                <CardTitle className="text-2xl bg-gradient-primary bg-clip-text text-transparent">Add New Interview Resource</CardTitle>
                 <CardDescription className="text-base">
                   Share a helpful interview resource with the community
                 </CardDescription>
+                <div className="mt-4 p-3 bg-gradient-accent/20 rounded-lg border border-accent/30">
+                  <p className="text-sm text-accent-foreground font-medium">
+                    💡 <strong>Tip:</strong> If adding similar resources, use numbering like "Data Analytics-1", then "Data Analytics-2", etc.
+                  </p>
+                </div>
               </CardHeader>
               <CardContent className="px-8 pb-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -263,7 +268,7 @@ export default function InterviewHub() {
                     type="submit" 
                     disabled={submitting}
                     size="lg"
-                    className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl transition-all duration-300"
+                    className="w-full bg-gradient-primary hover:bg-gradient-secondary shadow-lg hover:shadow-xl transition-all duration-300 text-white border-0"
                   >
                     {submitting ? (
                       <>
@@ -282,7 +287,7 @@ export default function InterviewHub() {
 
         {/* Filter Section */}
         <div className="mb-8">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 p-6 bg-card/30 backdrop-blur-sm rounded-xl border">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 p-6 bg-gradient-card backdrop-blur-sm rounded-xl border border-primary/20">
             <div className="flex items-center gap-3">
               <Filter className="w-5 h-5 text-primary" />
               <Label htmlFor="filter" className="text-sm font-medium whitespace-nowrap">Filter by Stream:</Label>
@@ -343,7 +348,7 @@ export default function InterviewHub() {
             {filteredResources.map((resource) => (
               <Card 
                 key={resource.id} 
-                className="group hover:shadow-2xl hover:scale-105 transition-all duration-300 border-0 bg-card/60 backdrop-blur-sm overflow-hidden"
+                className="group hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-primary/20 bg-gradient-card backdrop-blur-sm overflow-hidden"
               >
                 <CardHeader className="pb-4">
                   <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
@@ -362,7 +367,7 @@ export default function InterviewHub() {
                     </div>
                     <Button 
                       onClick={() => openResource(resource.url)}
-                      className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-md hover:shadow-lg transition-all duration-300 group-hover:scale-105"
+                      className="w-full bg-gradient-primary hover:bg-gradient-secondary shadow-md hover:shadow-lg transition-all duration-300 group-hover:scale-105 text-white border-0"
                       size="lg"
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
