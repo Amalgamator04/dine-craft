@@ -110,7 +110,7 @@ export default function InterviewHub() {
           setResources(prev => [payload.new as Resource, ...prev]);
           toast({
             title: "New resource added!",
-            description: "A new interview resource has been added by another user.",
+            description: "A new learning resource has been added by another user.",
           });
         }
       )
@@ -181,9 +181,9 @@ export default function InterviewHub() {
         <div className="container mx-auto px-6 py-6">
           <div className="text-center">
             <h1 className="text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              🌈 Interview Resource Hub
+              📚 The Resources
             </h1>
-            <p className="text-muted-foreground mt-3 text-lg">Discover and share amazing interview preparation resources</p>
+            <p className="text-muted-foreground mt-3 text-lg">Your comprehensive collection of learning materials and study resources</p>
           </div>
         </div>
       </header>
@@ -206,9 +206,9 @@ export default function InterviewHub() {
           {showForm && (
             <Card className="max-w-2xl mx-auto shadow-xl border-0 bg-gradient-card backdrop-blur-sm">
               <CardHeader className="text-center pb-6">
-                <CardTitle className="text-2xl bg-gradient-primary bg-clip-text text-transparent">Add New Interview Resource</CardTitle>
+                <CardTitle className="text-2xl bg-gradient-primary bg-clip-text text-transparent">Add New Resource</CardTitle>
                 <CardDescription className="text-base">
-                  Share a helpful interview resource with the community
+                  Share a helpful learning resource with the community
                 </CardDescription>
                 <div className="mt-4 p-3 bg-gradient-accent/20 rounded-lg border border-accent/30">
                   <p className="text-sm text-accent-foreground font-medium">
@@ -315,7 +315,7 @@ export default function InterviewHub() {
           <div className="text-center py-16">
             <div className="inline-flex items-center gap-3 text-lg text-muted-foreground">
               <div className="w-6 h-6 border-3 border-primary border-t-transparent rounded-full animate-spin" />
-              Loading amazing resources...
+              Loading your resources...
             </div>
           </div>
         ) : error ? (
@@ -338,7 +338,7 @@ export default function InterviewHub() {
               <div className="text-6xl mb-4">📝</div>
               <div className="text-xl text-muted-foreground mb-6 font-medium">
                 {selectedStream === 'All' 
-                  ? "No resources added yet. Add your first one!" 
+                  ? "No resources added yet. Start building your collection!" 
                   : `No resources found for ${selectedStream}. Try a different filter or add a new resource.`}
               </div>
             </div>

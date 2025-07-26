@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/hooks/useAuth';
-import { LogOut, User, UtensilsCrossed } from 'lucide-react';
+import { LogOut, User, BookOpen } from 'lucide-react';
 
 interface LayoutProps {
   children: ReactNode;
@@ -54,8 +54,8 @@ const Layout = ({ children }: LayoutProps) => {
       <header className="border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/60">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <UtensilsCrossed className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold">Restaurant POS</h1>
+            <BookOpen className="h-8 w-8 text-primary" />
+            <h1 className="text-2xl font-bold">The Resources</h1>
           </div>
           
           <div className="flex items-center space-x-4">

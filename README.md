@@ -1,4 +1,15 @@
-# Welcome to your Lovable project
+# 📚 The Resources
+
+A comprehensive resource management platform for organizing and sharing learning materials, study resources, and educational content.
+
+## Features
+
+- 📖 **Resource Collection**: Add and organize learning resources by category
+- 🔍 **Smart Filtering**: Filter resources by stream/category (Data Science, Python, React, etc.)
+- 🌐 **Real-time Updates**: See new resources added by other users in real-time
+- 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
+- 🎨 **Modern UI**: Beautiful gradient design with smooth animations
+- 🔗 **Easy Sharing**: One-click access to external resources
 
 ## Project info
 
