@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      interview_resources: {
+        Row: {
+          added_by: string | null
+          created_at: string
+          id: string
+          stream: string
+          title: string
+          url: string
+        }
+        Insert: {
+          added_by?: string | null
+          created_at?: string
+          id?: string
+          stream: string
+          title: string
+          url: string
+        }
+        Update: {
+          added_by?: string | null
+          created_at?: string
+          id?: string
+          stream?: string
+          title?: string
+          url?: string
+        }
+        Relationships: []
+      }
       menu_categories: {
         Row: {
           created_at: string
