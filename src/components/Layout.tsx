@@ -49,13 +49,13 @@ const Layout = ({ children }: LayoutProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen galactic-bg">
       {/* Header */}
-      <header className="border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/60">
+      <header className="border-b border-primary/20 bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/60">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <BookOpen className="h-8 w-8 text-primary" />
-            <h1 className="text-2xl font-bold">The Resources</h1>
+            <BookOpen className="h-8 w-8 text-primary animate-twinkle" />
+            <h1 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">The Resources</h1>
           </div>
           
           <div className="flex items-center space-x-4">

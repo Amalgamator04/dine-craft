@@ -1,6 +1,6 @@
-# 📚 The Resources
+# 🌌 The Resources
 
-A comprehensive resource management platform for organizing and sharing learning materials, study resources, and educational content.
+A comprehensive resource management platform for organizing and sharing learning materials, study resources, and educational content with a stunning galactic theme.
 
 ## Features
 
@@ -8,7 +8,8 @@ A comprehensive resource management platform for organizing and sharing learning
 - 🔍 **Smart Filtering**: Filter resources by stream/category (Data Science, Python, React, etc.)
 - 🌐 **Real-time Updates**: See new resources added by other users in real-time
 - 📱 **Responsive Design**: Works seamlessly on desktop and mobile devices
-- 🎨 **Modern UI**: Beautiful gradient design with smooth animations
+- 🎨 **Galactic UI**: Stunning space-themed design with twinkling stars and cosmic animations
+- 🌟 **Cosmic Effects**: Floating animations, nebula backgrounds, and stellar visual effects
 - 🔗 **Easy Sharing**: One-click access to external resources
 
 ## Project info
