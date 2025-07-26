@@ -70,9 +70,6 @@ export default function InterviewHub() {
       if (!session) {
         const { data, error } = await supabase.auth.signInAnonymously();
         if (error) throw error;
-        setUserId(data.user?.id || null);
-      } else {
-        setUserId(session.user?.id || null);
       }
     } catch (err) {
       console.error('Auth error:', err);
@@ -178,78 +175,83 @@ export default function InterviewHub() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       {/* Header */}
-      <header className="border-b bg-card shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold text-foreground">Interview Resource Hub</h1>
-            <div className="text-sm text-muted-foreground">
-              User ID: {userId ? userId.substring(0, 8) + '...' : 'Loading...'}
-            </div>
+      <header className="border-b bg-card/80 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div className="container mx-auto px-6 py-6">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+              📚 Interview Resource Hub
+            </h1>
+            <p className="text-muted-foreground mt-2">Discover and share amazing interview preparation resources</p>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
-        {/* Add Resource Button */}
-        <div className="mb-6">
-          <Button 
-            onClick={() => setShowForm(!showForm)}
-            className="mb-4"
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            {showForm ? 'Cancel' : 'Add New Resource'}
-          </Button>
+      <div className="container mx-auto px-6 py-12">
+        {/* Add Resource Section */}
+        <div className="mb-12">
+          <div className="text-center mb-8">
+            <Button 
+              onClick={() => setShowForm(!showForm)}
+              size="lg"
+              className="bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              <Plus className="w-5 h-5 mr-2" />
+              {showForm ? 'Cancel' : 'Add New Resource'}
+            </Button>
+          </div>
 
           {/* Add Resource Form */}
           {showForm && (
-            <Card className="mb-6">
-              <CardHeader>
-                <CardTitle>Add New Interview Resource</CardTitle>
-                <CardDescription>
+            <Card className="max-w-2xl mx-auto shadow-xl border-0 bg-card/50 backdrop-blur-sm">
+              <CardHeader className="text-center pb-6">
+                <CardTitle className="text-2xl">Add New Interview Resource</CardTitle>
+                <CardDescription className="text-base">
                   Share a helpful interview resource with the community
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div>
-                    <Label htmlFor="title">Title</Label>
+              <CardContent className="px-8 pb-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="title" className="text-sm font-medium">Title</Label>
                     <Input
                       id="title"
                       type="text"
                       placeholder="e.g., Top 50 SQL Interview Questions"
                       value={formData.title}
                       onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+                      className="h-12 border-2 focus:border-primary transition-colors"
                       required
                     />
                   </div>
                   
-                  <div>
-                    <Label htmlFor="url">URL</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="url" className="text-sm font-medium">URL</Label>
                     <Input
                       id="url"
                       type="url"
                       placeholder="https://example.com/resource"
                       value={formData.url}
                       onChange={(e) => setFormData(prev => ({ ...prev, url: e.target.value }))}
+                      className="h-12 border-2 focus:border-primary transition-colors"
                       required
                     />
                   </div>
 
-                  <div>
-                    <Label htmlFor="stream">Stream / Category</Label>
+                  <div className="space-y-2">
+                    <Label htmlFor="stream" className="text-sm font-medium">Stream / Category</Label>
                     <Select 
                       value={formData.stream} 
                       onValueChange={(value) => setFormData(prev => ({ ...prev, stream: value }))}
                       required
                     >
-                      <SelectTrigger>
+                      <SelectTrigger className="h-12 border-2 focus:border-primary transition-colors">
                         <SelectValue placeholder="Select a stream" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="bg-popover backdrop-blur-sm border-2 shadow-xl z-50">
                         {STREAMS.map(stream => (
-                          <SelectItem key={stream} value={stream}>
+                          <SelectItem key={stream} value={stream} className="cursor-pointer hover:bg-accent">
                             {stream}
                           </SelectItem>
                         ))}
@@ -257,8 +259,20 @@ export default function InterviewHub() {
                     </Select>
                   </div>
 
-                  <Button type="submit" disabled={submitting}>
-                    {submitting ? 'Adding...' : 'Add Resource'}
+                  <Button 
+                    type="submit" 
+                    disabled={submitting}
+                    size="lg"
+                    className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    {submitting ? (
+                      <>
+                        <div className="w-4 h-4 mr-2 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                        Adding...
+                      </>
+                    ) : (
+                      'Add Resource'
+                    )}
                   </Button>
                 </form>
               </CardContent>
@@ -266,19 +280,23 @@ export default function InterviewHub() {
           )}
         </div>
 
-        {/* Filter */}
-        <div className="mb-6">
-          <div className="flex items-center gap-2 mb-4">
-            <Filter className="w-4 h-4" />
-            <Label htmlFor="filter">Filter by Stream:</Label>
+        {/* Filter Section */}
+        <div className="mb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 p-6 bg-card/30 backdrop-blur-sm rounded-xl border">
+            <div className="flex items-center gap-3">
+              <Filter className="w-5 h-5 text-primary" />
+              <Label htmlFor="filter" className="text-sm font-medium whitespace-nowrap">Filter by Stream:</Label>
+            </div>
             <Select value={selectedStream} onValueChange={setSelectedStream}>
-              <SelectTrigger className="w-48">
+              <SelectTrigger className="w-64 h-11 border-2 bg-background/50">
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="All">All Streams</SelectItem>
+              <SelectContent className="bg-popover backdrop-blur-sm border-2 shadow-xl z-50">
+                <SelectItem value="All" className="cursor-pointer hover:bg-accent">
+                  🌟 All Streams
+                </SelectItem>
                 {STREAMS.map(stream => (
-                  <SelectItem key={stream} value={stream}>
+                  <SelectItem key={stream} value={stream} className="cursor-pointer hover:bg-accent">
                     {stream}
                   </SelectItem>
                 ))}
@@ -289,46 +307,66 @@ export default function InterviewHub() {
 
         {/* Resources Display */}
         {loading ? (
-          <div className="text-center py-12">
-            <div className="text-lg text-muted-foreground">Loading resources...</div>
+          <div className="text-center py-16">
+            <div className="inline-flex items-center gap-3 text-lg text-muted-foreground">
+              <div className="w-6 h-6 border-3 border-primary border-t-transparent rounded-full animate-spin" />
+              Loading amazing resources...
+            </div>
           </div>
         ) : error ? (
-          <div className="text-center py-12">
-            <div className="text-lg text-destructive mb-4">{error}</div>
-            <Button onClick={fetchResources}>Try Again</Button>
+          <div className="text-center py-16">
+            <div className="max-w-md mx-auto">
+              <div className="text-xl text-destructive mb-6 font-medium">{error}</div>
+              <Button 
+                onClick={fetchResources}
+                size="lg"
+                variant="outline"
+                className="border-2 hover:bg-accent transition-colors"
+              >
+                Try Again
+              </Button>
+            </div>
           </div>
         ) : filteredResources.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="text-lg text-muted-foreground mb-4">
-              {selectedStream === 'All' 
-                ? "No resources added yet. Add your first one!" 
-                : `No resources found for ${selectedStream}. Try a different filter or add a new resource.`}
+          <div className="text-center py-16">
+            <div className="max-w-md mx-auto">
+              <div className="text-6xl mb-4">📝</div>
+              <div className="text-xl text-muted-foreground mb-6 font-medium">
+                {selectedStream === 'All' 
+                  ? "No resources added yet. Add your first one!" 
+                  : `No resources found for ${selectedStream}. Try a different filter or add a new resource.`}
+              </div>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredResources.map((resource) => (
-              <Card key={resource.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="text-lg">{resource.title}</CardTitle>
+              <Card 
+                key={resource.id} 
+                className="group hover:shadow-2xl hover:scale-105 transition-all duration-300 border-0 bg-card/60 backdrop-blur-sm overflow-hidden"
+              >
+                <CardHeader className="pb-4">
+                  <CardTitle className="text-xl group-hover:text-primary transition-colors line-clamp-2">
+                    {resource.title}
+                  </CardTitle>
                   <CardDescription>
-                    <span className="inline-block bg-primary/10 text-primary px-2 py-1 rounded-md text-xs font-medium">
+                    <span className="inline-block bg-gradient-to-r from-primary/20 to-primary/10 text-primary px-3 py-1.5 rounded-full text-sm font-medium">
                       {resource.stream}
                     </span>
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="text-sm text-muted-foreground break-all">
+                <CardContent className="pt-0">
+                  <div className="space-y-4">
+                    <div className="text-sm text-muted-foreground break-all bg-muted/20 p-3 rounded-lg">
                       {truncateUrl(resource.url)}
                     </div>
                     <Button 
                       onClick={() => openResource(resource.url)}
-                      className="w-full"
-                      variant="outline"
+                      className="w-full bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary shadow-md hover:shadow-lg transition-all duration-300 group-hover:scale-105"
+                      size="lg"
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
-                      Open Link
+                      Open Resource
                     </Button>
                   </div>
                 </CardContent>
